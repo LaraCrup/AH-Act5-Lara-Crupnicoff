@@ -29,6 +29,17 @@ app.get('/api/users/:id', async (req, res) => {
   }
 })
 
+app.post('/api/users', async (req, res) => {
+  try {
+    const user = req.body;
+    const id = await admUser.setUser(user)
+    res.status(200).json({ msg: 'Usuario guardado', data: {id} });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ msg: 'Error del servidor. No se pudo guardar el usuario', error });
+  }
+})
+
 app.listen(port, () => {
   console.log(`Iniciando el servidor en el puerto ${port}`);
 });

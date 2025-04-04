@@ -10,7 +10,7 @@ class UserManager {
   randomID() {
     return crypto.randomUUID();
   }
-  async setUser(users) {
+  async setUser(user) {
     try {
       await this.getUsers();
       user.id = this.randomID();
